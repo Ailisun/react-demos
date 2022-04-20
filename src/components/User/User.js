@@ -1,11 +1,10 @@
-import React from 'react';
 
-const User = () => {
+export const User = ({user, setUser}) => {
     return (
         <div>
-            
+            {user.name}
+            <input type="button" value="show info" onClick={()=> setUser(user)}/>
         </div>
     );
 };
 
-export default User;
