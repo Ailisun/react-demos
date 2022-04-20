@@ -1,4 +1,4 @@
 import axios from "axios";
-import baseUrl from "../constants/links";
+import baseURL from "../constants/links";
 
-export const axiosService = axios.create({baseUrl})
+export const axiosService = axios.create({baseURL})
