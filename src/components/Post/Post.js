@@ -3,7 +3,7 @@ const Post = ({post}) => {
     const {id, title} = post
     return (
         <div>
-            {id} -- {title}
+            {id} -- {title} <Link to ={`${id}`}>get Details</Link>
         </div>
     );
 };
