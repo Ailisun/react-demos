@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.users {
+    min-width: 300px;
+    padding-left: 100px;
+}

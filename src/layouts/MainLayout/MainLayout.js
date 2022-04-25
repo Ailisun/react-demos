@@ -1,8 +1,8 @@
 import css from "./MainLayout.module.css";
-import {Outlet, NavLink, useNavigate} from "react-router-dom";
+import {Outlet, NavLink} from "react-router-dom";
 
 const MainLayout = () => {
-     const navigate = useNavigate()
+     // const navigate = useNavigate()
     return (
         <div>
             <div className={css.header}>
@@ -13,10 +13,10 @@ const MainLayout = () => {
 
             </div>
             <hr/>
-            <div>
-                <button onClick={() => navigate(-1)}>prev</button>
-                <button onClick={() => navigate(1)}>next</button>
-            </div>
+            {/*<div>*/}
+            {/*    <button onClick={() => navigate(-1)}>prev</button>*/}
+            {/*    <button onClick={() => navigate(1)}>next</button>*/}
+            {/*</div>*/}
             <Outlet/>
         </div>
     );

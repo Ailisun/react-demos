@@ -6,16 +6,16 @@ import {PostDetails} from "../../components";
 const SinglePostPage = () => {
     const {state} = useLocation()
     const [post, setPost] = useState(state)
-    const {id} = useParams()
+    const {userId} = useParams()
 
     useEffect(() => {
         if (!state){
-            postService.getById(id).then(({data}) => setPost(data))
+            postService.getById(userId).then(({data}) => setPost(data))
         }else {
             setPost(state)
         }
 
-    }, [id, state])
+    }, [userId, state])
     return (
         <div>
             {post && <PostDetails post={post}/>}
