@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
 import {userService} from "../../services";
 import {UserDetails} from "../../components/UserDetails/UserDetails";
+import {Loading} from "../../components";
 
 const SinglUserPage = () => {
     const {state} = useLocation()
@@ -21,7 +22,8 @@ const SinglUserPage = () => {
     return (
         <div>
         <div>
-            {user && <UserDetails user={user}/>}
+            {user ? <UserDetails user={user}/>
+            : <Loading/>}
         </div>
             <Outlet/>
         </div>
