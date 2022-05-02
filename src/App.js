@@ -1,66 +1,94 @@
-import {useReducer} from "react";
+import {useReducer, useState} from "react";
+import  './App.css'
 
 const reducer = (state, action) => {
-    const {type, payload} = action
+    const { type, payload } = action;
+
     switch (type) {
-        // case'inc1':
-        //     return {...state, counter1: state.counter1 + 1} you can write code in this way, but another one below
-        //
-        // case'inc2':
-        //     return {...state, counter2: state.counter2 + 1}
-        //
-        // case'inc3':
-        //     return {...state, counter3: state.counter3 + 1}
+        case 'addCat' :
+            return { ...state, cats: [...state.cats, { name: payload, id: Date.now() }] }
+        case 'deleteCat' :
+            return { ...state, cats: state.cats.filter(cat => cat.id !== payload) }
 
-        case'counter1':
-            return {...state, counter1: state.counter1 + payload}
-
-        case'counter2':
-            return {...state, counter2: state.counter2 + payload}
-
-        case'counter3':
-            return {...state, counter3: state.counter3 + payload}
-
-
-
-        case'reset1':
-            return {...state,counter1: 0 }
-        case'reset2':
-            return {...state,counter2: 0 }
-        case'reset3':
-            return {...state,counter3: 0 }
-
+        case 'addDog' :
+            return { ...state, dogs: [...state.dogs, { name: payload, id: Date.now() }] }
+        case 'deleteDog' :
+            return { ...state, dogs: state.dogs.filter(dog => dog.id !== payload) }
 
         default :
+            console.error('невідомий тип!');
             return state;
     }
-
-
 }
-const App = () => {
-    const [state, dispatch] = useReducer(reducer, {counter1: 0, counter2: 0, counter3: 0})
+
+export const App = () => {
+    const [state, dispatch] = useReducer(reducer, { cats: [], dogs: [] });
+
+    const [catValue, setCatValue] = useState('');
+    const [dogValue, setDogValue] = useState('');
+
+    // const settler = ( type, payload, setEmpty ) => { you can also use this variant
+    //     dispatch({ type, payload });
+    //     setEmpty('');
+    // }
+
+
+    const createCat = () => {
+        dispatch({ type: 'addCat', payload: catValue });
+        setCatValue('');
+    }
+
+    const createDog = () => {
+        dispatch({ type: 'addDog', payload: dogValue });
+        setDogValue('');
+    }
+
     return (
         <div>
-            <div>
-                <div>Counter #1 :{state.counter1}</div>
-                <button onClick={() => dispatch({type: 'counter1', payload: 1})}>inc</button>
-                <button onClick={() => dispatch({type: 'counter1', payload: -1})}>dec</button>
-                <button onClick={() => dispatch({type: 'reset1'})}>reset</button>
-            </div>
-            <hr/>
-            <div>
-                <div>Counter #2 :{state.counter2}</div>
-                <button onClick={() => dispatch({type: 'counter2', payload: 1})}>inc</button>
-                <button onClick={() => dispatch({type: 'counter2', payload: -1})}>dec</button>
-                <button onClick={() => dispatch({type: 'reset2'})}>reset</button>
-            </div>
-            <hr/>
+            {/*<div className={'header'}>*/}
+            {/*    <div>*/}
+            {/*        <label>Cat name : <input type="text" onChange={({ target }) => setCatValue(target.value)} value={catValue}/></label>*/}
+            {/*        <button onClick={() => settler('addCat', catValue, setCatValue)}>Save</button>*/}
+            {/*    </div>*/}
+            {/*    <div>*/}
+            {/*        <label>Dog name : <input type="text" onChange={({ target }) => setDogValue(target.value)} value={dogValue}/></label>*/}
+            {/*        <button onClick={() => settler('addDog', dogValue, setDogValue)}>Save</button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
+            <div className={'header'}>
+                <div>
+                    <label>Cat name : <input type="text" onChange={({ target }) => setCatValue(target.value)} value={catValue}/></label>
+                    <button onClick={createCat}>Save</button>
+                </div>
+                <div>
+                    <label>Dog name : <input type="text" onChange={({ target }) => setDogValue(target.value)} value={dogValue}/></label>
+                    <button onClick={createDog}>Save</button>
+                </div>
+            </div>
+
+            <hr/>
+            <div className={'body'}>
             <div>
-                <div>Counter #3 :{state.counter3}</div>
-                <button onClick={() => dispatch({type: 'counter3', payload: 1})}>inc</button>
-                <button onClick={() => dispatch({type: 'counter3', payload: -1})}>dec</button>
-                <button onClick={() => dispatch({type: 'reset3'})}>reset</button>
+                {
+                    state.cats.map(cat => (
+                        <div key={cat.id}>
+                            {cat.name}
+                            <button onClick={() => dispatch({type: 'deleteCat', payload: cat.id})}>delete</button>
+                        </div>
+                    ))
+                }
+            </div>
+            <div>
+                {
+                    state.dogs.map(dog => (
+                        <div key={dog.id}>
+                            {dog.name}
+                            <button onClick={() => dispatch({type: 'deleteDog', payload: dog.id})}>delete</button>
+                        </div>
+                    ))
+                }
+            </div>
             </div>
 
         </div>
