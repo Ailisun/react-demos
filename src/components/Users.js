@@ -9,11 +9,8 @@ export function Users() {
 
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(value => value.json())
-            .then(value => {
-                loadUsers(value, dispatch);
-            });
+
+        dispatch(loadUsers)
 
     }, []);
 
