@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: darkseagreen;
+    color: white;
+    font-family: "Source Sans Pro",sans-serif;
+    margin: 0;
+}
+.movie {
+    background-color: steelblue;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgb(42, 107, 74);
+    margin: 1rem;
+    width: 250px;
+}
+
+.movie-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie img {
+    max-width: 100%;
+}
+.movie-info {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+}
