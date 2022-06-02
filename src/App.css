@@ -7,13 +7,17 @@ body {
     color: white;
     font-family: "Source Sans Pro",sans-serif;
     margin: 0;
+
 }
 .movie {
     background-color: steelblue;
     border-radius: 3px;
     box-shadow: 3px 3px 5px rgb(42, 107, 74);
     margin: 1rem;
-    width: 250px;
+    width: 300px;
+    position: relative;
+    overflow: hidden;
+
 }
 
 .movie-container{
@@ -29,4 +33,18 @@ body {
     justify-content:space-between;
     align-items: center;
 
+}
+.movie-over {
+    background-color: steelblue;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transfprm 0.3s ease-in-out;
+}
+
+.movie:hover .movie-over {
+    transform: translateX(0%);
 }

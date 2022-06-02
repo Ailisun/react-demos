@@ -8,6 +8,13 @@ const Movie = ({title, poster_path, overview, vote_average}) => {
                 <h5>{title}</h5>
                 <span>{vote_average}</span>
             </div>
+
+            <div className="movie-over">
+                <h5>overview:</h5>
+                <p>{overview}</p>
+            </div>
+
+
         </div>
     );
 };
